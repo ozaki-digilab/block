@@ -167,7 +167,7 @@ function reset() {
     game.resume();
 }
 
-function init() {    
+function init() {    console.log("init() START");
     game = new Monacanoid();
     game.fps = SETTINGS_FPS;
     game.rootScene.backgroundColor = 'black';
@@ -181,7 +181,7 @@ function init() {
 
     $("#enchant-stage > div").css('-webkit-transform','none');
     
-    game.onload = function(){
+    game.onload = function(){console.log("game.onload START");
         //Header, display the score and so on 
         var label = new Label("ACCEL            SCORE");
         label.font = SETTINGS_FONT;
