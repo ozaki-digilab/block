@@ -1,8 +1,12 @@
 enchant();
 
 function callinit() {
-    if(getUa() === false) init();
-    else document.addEventListener("deviceready", init, false);
+    if(getUa() === false || typeof device !== 'undefined') {
+      init();
+    }
+    else {
+		document.addEventListener("deviceready", init, false);
+    }
 }
 
 var SETTINGS_GRAVITY = 0.18,
@@ -55,7 +59,9 @@ Monacanoid = Class.create(Core,{
             this.screenSize.zoom = screen.availWidth / this.screenSize.width;
             this.screenSize.height = screen.availHeight ? ~~((screen.availHeight - 76*4) / this.screenSize.zoom) : 420;
         } else this.screenSize.height = 480;
-
+alert(this.screenSize.zoom);
+alert(this.screenSize.width);
+alert(this.screenSize.height);
         // Accelerometer
         if (typeof(navigator.accelerometer) !== 'undefined') {
             if (accelerationWatch !== null) {
@@ -152,7 +158,7 @@ Monacanoid = Class.create(Core,{
             else alert("Cleared!");
             game.end("Cleared!");
             game.stop();
-        }, 100);               
+        }, 100);
     }
 });
 
@@ -167,7 +173,7 @@ function reset() {
     game.resume();
 }
 
-function init() {    console.log("init() START");
+function init() {
     game = new Monacanoid();
     game.fps = SETTINGS_FPS;
     game.rootScene.backgroundColor = 'black';
